@@ -1,0 +1,118 @@
+  openapi: "3.0.1"
+  
+  info:
+      title: A office Management APP API
+      version: "0.0.1"
+
+  servers:
+    -url: http://localhost:7080/OMA/API/V1
+
+  paths:
+  
+  /lecture:
+        post:                          
+            summary: Insert a new lecture to the App
+            operationId: insert
+            description: Create a new lecture and add it to the colllection of lectures
+            responses:
+              '200':
+                description: New lecture successful created 
+                content:
+                  application/json:
+                    schema:
+                      type: string
+                      items:
+                          $ref: "#/components/schemas/lecture"
+  /lecture:
+          update:                          
+            summary: Update an existing   lecture in the App
+            operationId: update
+            description: updating  a lecture in a collection of lectures
+            responses:
+              '200':
+                description: lecture is successful updated 
+                content:
+                application/json:
+                schema:
+                  type: string
+                  items:
+                          $ref: "#/components/schemas/lecture"
+  /lecture:
+          Delete:                          
+             summary: remove an existing  lecture from the App
+             operationId: Remove 
+             description: Removing a lecture to the collection of lectures
+             responses:
+             '200':
+               description: lecture Successful  removed
+               content:
+               application/json:
+               schema:
+                type: string
+                items:
+                          $ref: "#/components/schemas/lecture"
+  /lectures:
+     get:
+       summary: Get all lectures added to APP 
+       operationId: get_all_lecture
+       description: Returns all lecture registered for the application
+       responses:
+       '200':
+         description: "A  display list of lectures"
+         content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/lectures"
+        default:
+          $ref: "#/components/responses/ErrorResponse"
+  /lecture:
+      get:
+         summary: get a specific lectures from the APP
+         operationId: Get_Lecture
+         description: Returns one lecture  using their staff Id
+         responses:
+           '200':
+             description: "display one lecture "
+             content:
+             application/json:
+               schema:
+                 type: string
+                 items:
+                          $ref: "#/components/schemas/lecture"
+        default:   
+          $ref: "#/components/responses/ErrorResponse"
+  /lecture/Coarse:
+        get:
+           summary: Get a lecture teaching a certain coarse by course id
+           operationId: get_Lecture_coarse
+           description: Returns a lecture  using a  coarse id
+           responses:
+             '200':
+               description: "display a lecture teaching a certain coarse"  
+              content:
+              application/json:
+                schema:
+                type: string
+                items:
+                          $ref: "#/components/schemas/coarse"
+        default:   
+          $ref: "#/components/responses/ErrorResponse"
+  /lecture/Office: 
+          get:
+           summary: get a lecture sitting in the  same office
+           operationId: Get_Lecture_Office
+           description: Returns a lectures sitting in same office by office Id
+           responses:
+             '200':
+               description: "display a lecture sitting in the same office "
+               content:
+               application/json:
+               schema:
+                type: string
+                items:
+                          $ref: "#/components/schemas/office"                                                                       
+
+
+                       
