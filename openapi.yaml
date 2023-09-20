@@ -1,0 +1,155 @@
+openapi: '3.0.0'
+
+info:
+  title: Faculty API
+  version: 1.0.0
+servers:
+  - url: http://localhost:9090
+#description: API for managing staff, offices, and courses in the Faculty of Computing and Informatics
+paths:
+  /lecturer/list_of_lecture:
+    get:
+      summary: Retrieve a list of all lecturers
+      responses:
+        '200':
+          description: List of lecturers
+          
+  #working call function
+  /lecturer/:
+    post:
+      summary: Add a new lecturer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Lecturer"
+      responses:
+        '201':
+          description: Created
+          #working call function
+  /lecturers/{staffNumber}:
+    get:
+      summary: Retrieve details of a specific lecturer by staff number
+      parameters:
+        - name: staffNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lecturer details
+         
+          
+          #working call function
+    put:
+      summary: Update an existing lecturer's information
+      parameters:
+        - name: staffNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Lecturer"
+      responses:
+        '200':
+          description: Updated
+          
+          #working call function
+    delete:
+      summary: Delete a lecturer's record by staff number
+      parameters:
+        - name: staffNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+          
+  /courses/{courseCode}/list_of_lecturers:
+    get:
+      summary: Retrieve all the lecturers that teach a certain course
+      parameters:
+        - name: courseCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of lecturers
+          content:
+            application/json:
+              schema:
+               $ref: "#/components/schemas/Course"
+                
+         
+          
+  /office/{officeNumber}/list_of_lecturers:
+    get:
+      summary: Retrieve all the lecturers that sit in the same office
+      parameters:
+        - name: officeNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of lecturers
+          content:
+            application/json:
+              schema:
+               $ref: "#/components/schemas/office"
+          
+          
+components:
+  schemas:
+    Lecturer:
+      type: object
+      properties:
+        staffNumber:
+          type: string
+        officeNumber:
+          type: string
+        staffName:
+          type: string
+        title:
+          type: string
+        courses:
+          type: array
+          items:
+            type: string
+    Course:
+      type: object
+      properties:
+        courseCode:
+          type: string
+        courseName:
+          type: string
+        nqfLevel:
+          type: integer
+        list_of_lecturers:
+           type: array
+           items: 
+             type: string
+             
+             
+    office:
+      type: object
+      
+         
+      
+             
+         
+        
+          
+          
