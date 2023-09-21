@@ -1,0 +1,60 @@
+syntax = "proto3";
+package LibrarySystem;
+import "google/protobuf/wrapper.proto";
+
+service LibrarySystem {
+   rpc AddBook (Book) returns (google.protobuf.StringValue);
+   rpc CreatUsers(stream User) returns (Response);
+   rpc UpdateBook (UpdateBookReq) returns (Book);
+   rpc RemoveBook (google.protobuf.StringValue) returns (BookList);
+   rpc ListAvailableBooks (google.protobuf.StringValue) returns (stream Book);
+   rpc LocateBook (LocateBookReq) returns (BookLocation);
+   rpc BorrowBook (BorrowBookReq) returns (Response);
+
+
+}
+
+message Book {
+    string title = 1;
+    string author_1 = 2;
+    string location = 3;
+    string ISBN = 4;
+    string status = 5;  
+}
+
+message User {
+    string user_id = 1;
+    string user_type = 2;
+    string username = 3;
+}
+
+message Response {
+    string message = 1;
+    string success = 2; 
+}
+
+message UpdateBookReq {
+    string title = 1;
+    string author_1 = 2;
+    string location = 3;
+    string ISBN = 4;
+    string status = 5;  
+}
+
+message BookList {
+    repeated Book books = 1;
+}
+
+message LocateBookReq {
+    string ISBN = 1;
+}
+
+message BookLocation {
+    string location = 1;
+}
+
+message BorrowBookReq {
+    string user_id = 1;
+    string ISBN = 2;
+}
+
