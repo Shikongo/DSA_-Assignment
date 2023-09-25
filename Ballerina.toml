@@ -1,6 +1,6 @@
 [package]
 org = "chris"
-name = "OfficeManagement"
+name = "libraryclient"
 version = "0.1.0"
 distribution = "2201.7.0"
 
